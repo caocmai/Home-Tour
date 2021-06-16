@@ -2,6 +2,8 @@ package game;
 
 import java.util.Scanner;
 
+import fixtures.Room;
+
 public class Main {
 	
 	static Scanner sc = new Scanner(System.in);
@@ -9,13 +11,24 @@ public class Main {
 	public static void main(String[] args) {
 		
 		String userInput = "";
+		RoomManager rooms = new RoomManager();
 		
 		while (!userInput.equalsIgnoreCase("Quit")) {
 			String[] commands = collectInput();
 			userInput = commands[0];
+			Room test = rooms.rooms[0].getEastRoom();
+			System.out.println(test.toString());
+			
+//			if (userInput.equalsIgnoreCase("go")) {
+//				String direction = commands[1];
+////				switch (direction) {
+////				case "north":
+////					
+////				}
+//			}
 
 		}
-		System.out.println("Thanks for visiting");
+		System.out.println("Thanks for visiting!");
 
 	}
 	

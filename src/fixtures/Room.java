@@ -1,16 +1,18 @@
 package fixtures;
 
+import java.util.Arrays;
+
 public class Room extends Fixture{
 	
 	public Room(String name, String shortDescription, String longDescription) {
 		super(name, shortDescription, longDescription);
 	}
-	public Item[] roomItems; 
+	public Item[] roomItems = null; 
 	
-	public Room eastRoom;
-	public Room westRoom;
-	public Room northRoom;
-	public Room southRoom;
+	private Room eastRoom = null;
+	private Room westRoom = null ;
+	private Room northRoom = null;
+	private Room southRoom = null;
 	
 	public Room getEastRoom() {
 		return eastRoom;
@@ -36,5 +38,18 @@ public class Room extends Fixture{
 	public void setSouthRoom(Room southRoom) {
 		this.southRoom = southRoom;
 	}
+	@Override
+	public String toString() {
+		return "Room [roomItems=" + Arrays.toString(roomItems) + ", eastRoom=" + eastRoom + ", westRoom=" + westRoom
+				;
+	}
+	
+	
+
+	
+
+	
+	
+	
 
 }

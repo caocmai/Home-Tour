@@ -1,9 +1,9 @@
 package fixtures;
 
 public abstract class Fixture {
-	String name;
-	String shortDescription;
-	String longDescription;
+	public String name;
+	public String shortDescription;
+	public String longDescription;
 	
 	public Fixture(String name, String shortDescription, String longDescription) {
 		// TODO Auto-generated constructor stub
@@ -11,5 +11,13 @@ public abstract class Fixture {
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Fixture [name=" + name + ", shortDescription=" + shortDescription + ", longDescription="
+//				+ longDescription + "]";
+//	}
+//	
+	
 	
 }
