@@ -1,5 +1,13 @@
 package game;
 
-public class Player {
+import fixtures.Item;
+import fixtures.Room;
 
+public class Player {
+	
+	public Item[] allItems;
+	public Room currentRoom;
+	
+	
+	
 }
