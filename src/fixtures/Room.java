@@ -1,6 +1,6 @@
 package fixtures;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Room extends Fixture{
 	
@@ -38,18 +38,22 @@ public class Room extends Fixture{
 	public void setSouthRoom(Room southRoom) {
 		this.southRoom = southRoom;
 	}
-	@Override
-	public String toString() {
-		return "Room [roomItems=" + Arrays.toString(roomItems) + ", eastRoom=" + eastRoom + ", westRoom=" + westRoom
-				;
+	public Item[] getRoomItems() {
+		return roomItems;
+	}
+	public void setRoomItems(Item[] roomItems) {
+		this.roomItems = roomItems;
 	}
 	
-	
-
-	
-
-	
-	
+	public String checkItem(String userInputItem) {
+		for (Item item : roomItems) {
+			if (userInputItem.equalsIgnoreCase(item.getName())) {
+				return "You are interacting with a "+ item.getName();
+			}
+		}
+		
+		return "Item does not exist in room";
+	}
 	
 
 }
