@@ -1,9 +1,9 @@
 package fixtures;
 
 public abstract class Fixture {
-	public String name;
-	public String shortDescription;
-	public String longDescription;
+	private String name;
+	private String shortDescription;
+	private String longDescription;
 	
 	public Fixture(String name, String shortDescription, String longDescription) {
 		// TODO Auto-generated constructor stub

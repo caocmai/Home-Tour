@@ -25,10 +25,13 @@ public class Player {
 	}
 
 	public void printRoom() {
-		System.out.println("You are currently in the " + currentRoom.name);
+		System.out.println("You are currently in the " + currentRoom.getName());
 
 	}
 
+	/*
+	 * This method adds an item the user just interacted with to their interactedItems.
+	 */
 	public void addInteractedItem(Item item) {
 		if (interactedItems == null) {
 			Item[] tempItem = new Item[1];
@@ -47,7 +50,7 @@ public class Player {
 	}
 
 	public void printIteractedItems() {
-		System.out.println("Items interacted so far: ");
+		System.out.println("Items you interacted so far: ");
 		String output = "";
 		if (interactedItems != null) {
 			for (Item item : interactedItems) {

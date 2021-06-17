@@ -28,16 +28,20 @@ public class RoomManager {
 		this.rooms = rooms;
 	}
 
+	/*
+	 * This method creates all the rooms and how they are related to one another.
+	 */
 	private void createRooms() {
-		
 		Room kitchen = createKitchen();
 		Room livingRoom = createLivingRoom();
 		Room bathroom = createBathroom();
 		Room garage = createGarage();
 		
-		
 		kitchen.setEastRoom(livingRoom);
 		livingRoom.setWestRoom(kitchen);
+		
+		livingRoom.setNorthRoom(bathroom);
+		bathroom.setSouthRoom(livingRoom);
 		
 		kitchen.setSouthRoom(bathroom);
 		bathroom.setNorthRoom(kitchen);
@@ -45,11 +49,9 @@ public class RoomManager {
 		kitchen.setWestRoom(garage);
 		garage.setEastRoom(kitchen);
 		
-	
-		Room[] allRooms = {kitchen, livingRoom, bathroom};
+		Room[] allRooms = {kitchen, livingRoom, bathroom, garage};
 		
 		this.rooms = allRooms;
-		
 	}
 	
 	private Room createKitchen() {

@@ -10,7 +10,6 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
 		String userInput = "";
 		RoomManager roomManager = new RoomManager();
 		Player player = new Player();
@@ -18,12 +17,13 @@ public class Main {
 		System.out.println("Welcome to Home Tour!");
 
 		while (true) {
-			System.out.println("--------------------------------------------------");
-			
+			System.out.println("##################################################");
+			System.out.println("##################################################");
 			player.printRoom();
 			Room currentRoom = player.getCurrentRoom();
 			System.out.println(currentRoom.getShortDescription());
 			System.out.println(currentRoom.getLongDescription());
+			currentRoom.printExits(player.getInteractedItems());
 			
 			String[] commands = collectInput();
 			userInput = commands[0];
@@ -39,7 +39,6 @@ public class Main {
 				System.out.println("--------------------------------------------------");
 				if (commands.length < 2) {
 					System.out.println("Interact with what?");
-
 				} else {
 					String item = commands[1];
 					Item interactItem = currentRoom.interactItem(item);
@@ -59,7 +58,7 @@ public class Main {
 				
 				String command = commands[1];
 				if (command.equalsIgnoreCase("items")) {
-					currentRoom.printRoomItems();
+					currentRoom.printRoomItems(player.getInteractedItems());
 
 				} else if (command.equalsIgnoreCase("seen")) {
 					player.printIteractedItems();
@@ -67,6 +66,7 @@ public class Main {
 					System.out.println("Use list with either 'items' or 'seen'.");
 				}
 			} else if (userInput.equalsIgnoreCase("quit")) {
+				System.out.println("Thanks for visiting!");
 				break;
 			} else {
 				System.out.println("--------------------------------------------------");
@@ -78,10 +78,11 @@ public class Main {
 				System.out.println(" or 'quit' to quit.");
 			}
 		}
-		System.out.println("Thanks for visiting!");
-
 	}
 
+	/*
+	 * This method collects user inputs.
+	 */
 	private static String[] collectInput() {
 		System.out.println("What would you like to do? ");
 		String input = sc.nextLine();
@@ -102,6 +103,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * This method moves the player to a new room if possible.
+	 */
 	private static void moveToNewRoom(Room currentRoom, Player player, String direction) {
 		switch (direction) {
 		case "east":
