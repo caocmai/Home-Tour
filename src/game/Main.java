@@ -18,56 +18,18 @@ public class Main {
 		System.out.println("Welcome to Home Tour!");
 
 		while (!userInput.equalsIgnoreCase("Quit")) {
+			System.out.println("----------------------");
 			player.printRoom();
 			Room currentRoom = player.getCurrentRoom();
-//			Item[] currentRoomItems = player.getCurrentRoom().getRoomItems();
 			String[] commands = collectInput();
 			userInput = commands[0];
 
 			if (userInput.equalsIgnoreCase("go")) {
 				if (commands.length < 2) {
 					System.out.println("Go where?");
-
 				} else {
 					String direction = commands[1];
-
-					switch (direction) {
-					case "east":
-						currentRoom = currentRoom.getEastRoom();
-						if (currentRoom != null) {
-							player.setCurrentRoom(currentRoom);
-						} else {
-							System.out.println("There's no room in that direcction");
-						}
-						break;
-					case "west":
-						currentRoom = currentRoom.getWestRoom();
-						if (currentRoom != null) {
-							player.setCurrentRoom(currentRoom);
-						} else {
-							System.out.println("There's no room in that direcction");
-						}
-						break;
-					case "north":
-						currentRoom = currentRoom.getNorthRoom();
-						if (currentRoom != null) {
-							player.setCurrentRoom(currentRoom);
-						} else {
-							System.out.println("There's no room in that direcction");
-						}
-						break;
-					case "south":
-						currentRoom = currentRoom.getSouthRoom();
-						if (currentRoom != null) {
-							player.setCurrentRoom(currentRoom);
-						} else {
-							System.out.println("There's no room in that direcction");
-						}
-						break;
-					default:
-						System.out.println("Direction not valid!");
-						System.out.println("Only specifiy go 'east', 'west', 'north', 'south' \n");
-					}
+					moveToNewRoom(currentRoom, player, direction);
 				}
 			} else if (userInput.equalsIgnoreCase("interact")) {
 				if (commands.length < 2) {
@@ -75,16 +37,50 @@ public class Main {
 
 				} else {
 					String item = commands[1];
-					System.out.println(currentRoom.interactItem(item));
+					Item interactItem = currentRoom.interactItem(item);
+					if (interactItem == null) {
+						continue;
+					}
+					
+					Item[] playerItems = player.getInteractedItems();
+					
+					if (playerItems == null) {
+						Item[] tempItem = new Item[1];
+						tempItem[0] = interactItem;
+						player.setInteractedItems(tempItem);
+					} else {
+						Item[] tempItem = new Item[playerItems.length + 1];
+						int i = 0;
+						while (i < playerItems.length) {
+							tempItem[i] = playerItems[i];
+							i++;
+						}
+						tempItem[i] = interactItem;
+						player.setInteractedItems(tempItem);
+					}
+					player.printIteractedItems();
 				}
-			} else if (userInput.equalsIgnoreCase("items")) {
-				currentRoom.printRoomItems();
+			} else if (userInput.equalsIgnoreCase("list")) {
+				if (commands.length < 2) {
+					System.out.println("You can list items within a room (list items) "
+							+ "or list items you've interacted (list seen).");
+					continue;
+
+				} 
+				
+				String command = commands[1];
+				if (command.equalsIgnoreCase("items")) {
+					currentRoom.printRoomItems();
+
+				} else if (command.equalsIgnoreCase("seen")) {
+					player.printIteractedItems();
+				}
 			} else {
 				System.out.println("Not a valid command!");
-				System.out.println(
-						"Only use 'go' to move between rooms, 'interact' to interact with items in room or 'quit' to quit.\n");
+				System.out
+						.println("Only use 'go' to move between rooms, " + "'interact' to interact with items in room, "
+								+ "items to view all items within room, or 'quit' to quit.\n");
 			}
-
 		}
 		System.out.println("Thanks for visiting!");
 
@@ -97,7 +93,35 @@ public class Main {
 		return commands;
 	}
 
-	private static void printRoom(Player player) {
+//	private static void printRoom(Player player) {
+//
+//	}
 
+	private static void setNewCurrentRoom(Room room, Player player) {
+		if (room != null) {
+			player.setCurrentRoom(room);
+		} else {
+			System.out.println("There's no room in that direction");
+		}
+	}
+
+	private static void moveToNewRoom(Room currentRoom, Player player, String direction) {
+		switch (direction) {
+		case "east":
+			setNewCurrentRoom(currentRoom.getEastRoom(), player);
+			break;
+		case "west":
+			setNewCurrentRoom(currentRoom.getWestRoom(), player);
+			break;
+		case "north":
+			setNewCurrentRoom(currentRoom.getNorthRoom(), player);
+			break;
+		case "south":
+			setNewCurrentRoom(currentRoom.getSouthRoom(), player);
+			break;
+		default:
+			System.out.println("Direction not valid!");
+			System.out.println("Only specifiy go 'east', 'west', 'north', 'south' \n");
+		}
 	}
 }

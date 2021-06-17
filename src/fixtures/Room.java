@@ -45,14 +45,16 @@ public class Room extends Fixture{
 		this.roomItems = roomItems;
 	}
 	
-	public String interactItem(String userInputItem) {
+	public Item interactItem(String userInputItem) {
 		for (Item item : roomItems) {
 			if (userInputItem.equalsIgnoreCase(item.getName())) {
-				return "You are interacting with a "+ item.getName();
+				System.out.println("You are interacting with a "+ item.getName());
+				return item;
 			}
 		}
 		
-		return "Item does not exist in room";
+		System.out.println("Item does not exist in room");
+		return null;
 	}
 	
 	public void printRoomItems() {

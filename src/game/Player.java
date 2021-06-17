@@ -5,14 +5,14 @@ import fixtures.Room;
 
 public class Player {
 	
-	private Item[] allItems;
+	private Item[] interactedItems;
 	private Room currentRoom;
 	
-	public Item[] getAllItems() {
-		return allItems;
+	public Item[] getInteractedItems() {
+		return interactedItems;
 	}
-	public void setAllItems(Item[] allItems) {
-		this.allItems = allItems;
+	public void setInteractedItems(Item[] allItems) {
+		this.interactedItems = allItems;
 	}
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -23,6 +23,18 @@ public class Player {
 	
 	public void printRoom() {
 		System.out.println("You are currently in the " + currentRoom.name);
+		
+	}
+	
+	public void printIteractedItems() {
+		System.out.println("Items interacted so far: ");
+		String output = "";
+		if (interactedItems != null) {
+			for (Item item : interactedItems) {
+				output += item.getName() + " | ";
+			}
+		}
+		System.out.println(output);
 	}
 	
 	
