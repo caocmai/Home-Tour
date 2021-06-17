@@ -9,10 +9,10 @@ public class Room extends Fixture{
 	}
 	public Item[] roomItems = null; 
 	
-	private Room eastRoom = null;
-	private Room westRoom = null ;
-	private Room northRoom = null;
-	private Room southRoom = null;
+	private Room eastRoom;
+	private Room westRoom;
+	private Room northRoom;
+	private Room southRoom;
 	
 	public Room getEastRoom() {
 		return eastRoom;
@@ -45,7 +45,7 @@ public class Room extends Fixture{
 		this.roomItems = roomItems;
 	}
 	
-	public String checkItem(String userInputItem) {
+	public String interactItem(String userInputItem) {
 		for (Item item : roomItems) {
 			if (userInputItem.equalsIgnoreCase(item.getName())) {
 				return "You are interacting with a "+ item.getName();
@@ -53,6 +53,15 @@ public class Room extends Fixture{
 		}
 		
 		return "Item does not exist in room";
+	}
+	
+	public void printRoomItems() {
+		System.out.println(this.name + "Room items: ");
+		String output = "";
+		for (Item item : roomItems) {
+			output += item.getName() + " | ";
+		}
+		System.out.println(output);
 	}
 	
 

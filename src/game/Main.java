@@ -20,7 +20,7 @@ public class Main {
 		while (!userInput.equalsIgnoreCase("Quit")) {
 			player.printRoom();
 			Room currentRoom = player.getCurrentRoom();
-			Item[] currentRoomItems = player.getCurrentRoom().getRoomItems();
+//			Item[] currentRoomItems = player.getCurrentRoom().getRoomItems();
 			String[] commands = collectInput();
 			userInput = commands[0];
 
@@ -34,13 +34,35 @@ public class Main {
 					switch (direction) {
 					case "east":
 						currentRoom = currentRoom.getEastRoom();
-						player.setCurrentRoom(currentRoom);
+						if (currentRoom != null) {
+							player.setCurrentRoom(currentRoom);
+						} else {
+							System.out.println("There's no room in that direcction");
+						}
 						break;
 					case "west":
+						currentRoom = currentRoom.getWestRoom();
+						if (currentRoom != null) {
+							player.setCurrentRoom(currentRoom);
+						} else {
+							System.out.println("There's no room in that direcction");
+						}
 						break;
 					case "north":
+						currentRoom = currentRoom.getNorthRoom();
+						if (currentRoom != null) {
+							player.setCurrentRoom(currentRoom);
+						} else {
+							System.out.println("There's no room in that direcction");
+						}
 						break;
 					case "south":
+						currentRoom = currentRoom.getSouthRoom();
+						if (currentRoom != null) {
+							player.setCurrentRoom(currentRoom);
+						} else {
+							System.out.println("There's no room in that direcction");
+						}
 						break;
 					default:
 						System.out.println("Direction not valid!");
@@ -49,12 +71,14 @@ public class Main {
 				}
 			} else if (userInput.equalsIgnoreCase("interact")) {
 				if (commands.length < 2) {
-					System.out.println("Go where?");
+					System.out.println("Interact with what?");
 
 				} else {
 					String item = commands[1];
-					System.out.println(currentRoom.checkItem(item));
+					System.out.println(currentRoom.interactItem(item));
 				}
+			} else if (userInput.equalsIgnoreCase("items")) {
+				currentRoom.printRoomItems();
 			} else {
 				System.out.println("Not a valid command!");
 				System.out.println(
