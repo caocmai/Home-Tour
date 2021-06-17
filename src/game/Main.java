@@ -18,9 +18,13 @@ public class Main {
 		System.out.println("Welcome to Home Tour!");
 
 		while (!userInput.equalsIgnoreCase("Quit")) {
-			System.out.println("----------------------");
+			System.out.println("--------------------------------------------------");
+			
 			player.printRoom();
 			Room currentRoom = player.getCurrentRoom();
+			System.out.println(currentRoom.getShortDescription());
+			System.out.println(currentRoom.getLongDescription());
+			
 			String[] commands = collectInput();
 			userInput = commands[0];
 
@@ -40,32 +44,16 @@ public class Main {
 					Item interactItem = currentRoom.interactItem(item);
 					if (interactItem == null) {
 						continue;
-					}
-					
-					Item[] playerItems = player.getInteractedItems();
-					
-					if (playerItems == null) {
-						Item[] tempItem = new Item[1];
-						tempItem[0] = interactItem;
-						player.setInteractedItems(tempItem);
-					} else {
-						Item[] tempItem = new Item[playerItems.length + 1];
-						int i = 0;
-						while (i < playerItems.length) {
-							tempItem[i] = playerItems[i];
-							i++;
-						}
-						tempItem[i] = interactItem;
-						player.setInteractedItems(tempItem);
-					}
+					} 
+					player.addInteractedItem(interactItem);
 					player.printIteractedItems();
 				}
 			} else if (userInput.equalsIgnoreCase("list")) {
+				System.out.println("--------------------------------------------------");
 				if (commands.length < 2) {
 					System.out.println("You can list items within a room (list items) "
 							+ "or list items you've interacted (list seen).");
 					continue;
-
 				} 
 				
 				String command = commands[1];
@@ -74,6 +62,8 @@ public class Main {
 
 				} else if (command.equalsIgnoreCase("seen")) {
 					player.printIteractedItems();
+				} else {
+					System.out.println("Use list with either 'items' or 'seen'.");
 				}
 			} else {
 				System.out.println("Not a valid command!");
@@ -101,7 +91,7 @@ public class Main {
 		if (room != null) {
 			player.setCurrentRoom(room);
 		} else {
-			System.out.println("There's no room in that direction");
+			System.out.println("Sorry, there's no room in that direction.");
 		}
 	}
 

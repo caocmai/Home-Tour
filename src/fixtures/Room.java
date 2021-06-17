@@ -58,7 +58,7 @@ public class Room extends Fixture{
 	}
 	
 	public void printRoomItems() {
-		System.out.println(this.name + "Room items: ");
+		System.out.println(this.name + " available items: ");
 		String output = "";
 		for (Item item : roomItems) {
 			output += item.getName() + " | ";

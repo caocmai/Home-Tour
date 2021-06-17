@@ -81,9 +81,11 @@ public class RoomManager {
 		Item toothpaste = new Item("Toothpaste", 
 				"Used with toothbrush to brush teeth.",
 				"This item is located next to the toothbrush.");
+		Item mirror = new Item("Mirror", 
+				"Used for refection.",
+				"This mirror has a long cracked line.");
 		
-		
-		Item[] bathroomItems = {toothbrush, toothpaste};
+		Item[] bathroomItems = {toothbrush, toothpaste, mirror};
 		
 		bathroom.roomItems = bathroomItems;
 		return bathroom;

@@ -11,8 +11,8 @@ public class Player {
 	public Item[] getInteractedItems() {
 		return interactedItems;
 	}
-	public void setInteractedItems(Item[] allItems) {
-		this.interactedItems = allItems;
+	public void setInteractedItems(Item[] interactedItems) {
+		this.interactedItems = interactedItems;
 	}
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -26,6 +26,23 @@ public class Player {
 		
 	}
 	
+	public void addInteractedItem(Item item) {
+		if (interactedItems == null) {
+			Item[] tempItem = new Item[1];
+			tempItem[0] = item;
+			this.setInteractedItems(tempItem);
+		} else {
+			Item[] tempItem = new Item[interactedItems.length + 1];
+			int i = 0;
+			while (i < interactedItems.length) {
+				tempItem[i] = interactedItems[i];
+				i++;
+			}
+			tempItem[i] = item;
+			this.setInteractedItems(tempItem);
+		}
+	}
+	
 	public void printIteractedItems() {
 		System.out.println("Items interacted so far: ");
 		String output = "";
@@ -33,8 +50,11 @@ public class Player {
 			for (Item item : interactedItems) {
 				output += item.getName() + " | ";
 			}
+			System.out.println(output);
+
+		} else {
+			System.out.println("Haven't interacted with any items yet.");
 		}
-		System.out.println(output);
 	}
 	
 	
