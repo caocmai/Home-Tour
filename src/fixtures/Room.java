@@ -53,7 +53,7 @@ public class Room extends Fixture{
 			}
 		}
 		
-		System.out.println("Item does not exist in room");
+		System.out.println("Item does not exist in room.");
 		return null;
 	}
 	

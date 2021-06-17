@@ -4,13 +4,30 @@ import fixtures.Item;
 import fixtures.Room;
 
 public class RoomManager {
-	public Room startingRoom; 
-	public Room[] rooms;
+	private Room startingRoom; 
+	private Room[] rooms;
 	
+	public Room getStartingRoom() {
+		return startingRoom;
+	}
+//
+//	public void setStartingRoom(Room startingRoom) {
+//		this.startingRoom = startingRoom;
+//	}
+
 	public RoomManager() {
 		this.createRooms();
+		this.startingRoom = rooms[0];
 	}
 	
+	public Room[] getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Room[] rooms) {
+		this.rooms = rooms;
+	}
+
 	private void createRooms() {
 		
 		Room kitchen = createKitchen();
