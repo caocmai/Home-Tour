@@ -30,7 +30,7 @@ public class Main {
 
 			if (userInput.equalsIgnoreCase("go")) {
 				if (commands.length < 2) {
-					System.out.println("Go where?");
+					System.out.println("Go north, south, east, or west?");
 				} else {
 					String direction = commands[1];
 					moveToNewRoom(currentRoom, player, direction);
@@ -57,11 +57,14 @@ public class Main {
 				
 				String command = commands[1];
 				if (command.equalsIgnoreCase("items")) {
-					currentRoom.printRoomItems(player.getInteractedItems());
+//					currentRoom.printRoomItems(player.getInteractedItems());
+					currentRoom.printAllItems();
+				} else if (command.equalsIgnoreCase("rooms")) {
+					roomManager.printAllRooms();
 				} else if (command.equalsIgnoreCase("seen")) {
 					player.printIteractedItems();
 				} else {
-					System.out.println("Use list with either 'items' or 'seen'.");
+					System.out.println("Use list with either 'items', 'rooms', or 'seen'.");
 				}
 			} else if (userInput.equalsIgnoreCase("info")) {
 				System.out.println("--------------------------------------------------");
@@ -85,6 +88,7 @@ public class Main {
 				System.out.println("'info' + item to see item information, ");
 				System.out.println("'list items' to view all items within room, ");
 				System.out.println("'list seen' to see all interacted items, ");
+				System.out.println("'list rooms' to get description of all rooms, ");
 				System.out.println(" or 'quit' to quit.");
 			}
 		}
@@ -114,7 +118,7 @@ public class Main {
 	}
 
 	/*
-	 * This method moves the player to a new room if possible.
+	 * This method moves the player to a new room, if possible.
 	 */
 	private static void moveToNewRoom(Room currentRoom, Player player, String direction) {
 		switch (direction) {

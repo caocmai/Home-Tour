@@ -10,11 +10,7 @@ public class RoomManager {
 	public Room getStartingRoom() {
 		return startingRoom;
 	}
-//
-//	public void setStartingRoom(Room startingRoom) {
-//		this.startingRoom = startingRoom;
-//	}
-
+	
 	public RoomManager() {
 		this.createRooms();
 		this.startingRoom = rooms[0];
@@ -26,6 +22,18 @@ public class RoomManager {
 
 	public void setRooms(Room[] rooms) {
 		this.rooms = rooms;
+	}
+	
+	public void printAllRooms() {
+		if (rooms.length > 0) {
+			for (Room r : rooms) {
+				System.out.println(r.getName());
+				System.out.println(r.getShortDescription());
+				System.out.println(r.getLongDescription());
+				System.out.println("--------------------------------------------------");
+
+			}
+		}
 	}
 
 	/*
@@ -66,11 +74,13 @@ public class RoomManager {
 		Item fridge = new Item("Fridge", 
 				"Place to keep food cold.",
 				"This item is used the most at this home.");
-		Item microwave = new Item("Mircowave", 
+		Item microwave = new Item("Microwave", 
 				"A device to heat up food.",
 				"This item is used to heat up food quickly.");
+		
 		Item[] kitchenItems = {fridge, microwave};
 		kitchen.setRoomItems(kitchenItems);
+		
 		return kitchen;
 	}
 	
@@ -109,8 +119,8 @@ public class RoomManager {
 				"This mirror has a long cracked line.");
 		
 		Item[] bathroomItems = {toothbrush, toothpaste, mirror};
-		
 		bathroom.setRoomItems(bathroomItems);
+		
 		return bathroom;
 		
 	}
@@ -125,6 +135,7 @@ public class RoomManager {
 		Item car = new Item("Car", 
 				"This car is a sedan.",
 				"This car needs to be cleaned.");
+		
 		Item[] garageItems = {lawnmower, car};
 		garage.setRoomItems(garageItems);
 				
@@ -143,8 +154,8 @@ public class RoomManager {
 		Item desk = new Item("Desk",
 				"Used to do some work.",
 				"The desk is brown with lots of paper on top.");
-		Item[] bedroomItems = {bed, desk};
 		
+		Item[] bedroomItems = {bed, desk};
 		bedroom.setRoomItems(bedroomItems);
 		
 		return bedroom;

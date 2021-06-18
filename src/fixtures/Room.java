@@ -8,7 +8,7 @@ public class Room extends Fixture {
 		super(name, shortDescription, longDescription);
 	}
 
-	public Item[] roomItems = null;
+	private Item[] roomItems = null;
 
 	private Room eastRoom;
 	private Room westRoom;
@@ -110,6 +110,19 @@ public class Room extends Fixture {
 			System.out.println(output);
 
 		}
+	}
+	
+	public void printAllItems() {
+		String output = "";
+
+		if (roomItems.length > 0) {
+			for (Item item : roomItems) {
+				output += item.getName() + " | ";
+			}
+			System.out.println("All " + this.getName() + " items: ");
+			System.out.println(output);
+		}
+		
 	}
 
 	public void printExits(Item[] seenItems) {
