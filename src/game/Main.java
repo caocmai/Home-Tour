@@ -42,9 +42,8 @@ public class Main {
 				} else {
 					String item = commands[1];
 					Item interactItem = currentRoom.interactItem(item);
-					if (interactItem == null) {
+					if (interactItem == null) 
 						continue;
-					} 
 					player.addInteractedItem(interactItem);
 					player.printIteractedItems();
 				}
@@ -59,11 +58,21 @@ public class Main {
 				String command = commands[1];
 				if (command.equalsIgnoreCase("items")) {
 					currentRoom.printRoomItems(player.getInteractedItems());
-
 				} else if (command.equalsIgnoreCase("seen")) {
 					player.printIteractedItems();
 				} else {
 					System.out.println("Use list with either 'items' or 'seen'.");
+				}
+			} else if (userInput.equalsIgnoreCase("info")) {
+				System.out.println("--------------------------------------------------");
+				if (commands.length < 2) {
+					System.out.println("More information for which item?");
+				} else {
+					String item = commands[1];
+					currentRoom.printItemInfo(item);
+					if (item == null) 
+						continue;
+//					player.printIteractedItems();
 				}
 			} else if (userInput.equalsIgnoreCase("quit")) {
 				System.out.println("Thanks for visiting!");
@@ -71,8 +80,9 @@ public class Main {
 			} else {
 				System.out.println("--------------------------------------------------");
 				System.out.println("Not a valid command!");
-				System.out.println("Only use 'go' to move between rooms, "); 
-				System.out.println("'interact' to interact with items in room, ");
+				System.out.println("Only use 'go' + cardinal direction to move between rooms, "); 
+				System.out.println("'interact' + item to interact with an item in room, ");
+				System.out.println("'info' + item to see item information, ");
 				System.out.println("'list items' to view all items within room, ");
 				System.out.println("'list seen' to see all interacted items, ");
 				System.out.println(" or 'quit' to quit.");

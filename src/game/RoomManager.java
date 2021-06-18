@@ -36,6 +36,13 @@ public class RoomManager {
 		Room livingRoom = createLivingRoom();
 		Room bathroom = createBathroom();
 		Room garage = createGarage();
+		Room bedroom = createBedroom();
+		
+		kitchen.setSouthRoom(bathroom);
+		bathroom.setNorthRoom(kitchen);
+		
+		kitchen.setWestRoom(garage);
+		garage.setEastRoom(kitchen);
 		
 		kitchen.setEastRoom(livingRoom);
 		livingRoom.setWestRoom(kitchen);
@@ -43,11 +50,8 @@ public class RoomManager {
 		livingRoom.setNorthRoom(bathroom);
 		bathroom.setSouthRoom(livingRoom);
 		
-		kitchen.setSouthRoom(bathroom);
-		bathroom.setNorthRoom(kitchen);
-		
-		kitchen.setWestRoom(garage);
-		garage.setEastRoom(kitchen);
+		livingRoom.setEastRoom(bedroom);
+		bedroom.setWestRoom(livingRoom);
 		
 		Room[] allRooms = {kitchen, livingRoom, bathroom, garage};
 		
@@ -66,12 +70,12 @@ public class RoomManager {
 				"A device to heat up food.",
 				"This item is used to heat up food quickly.");
 		Item[] kitchenItems = {fridge, microwave};
-		kitchen.roomItems = kitchenItems;
+		kitchen.setRoomItems(kitchenItems);
 		return kitchen;
 	}
 	
 	private Room createLivingRoom() {
-		Room livingRoom = new Room("Living Room", 
+		Room livingRoom = new Room("Livingroom", 
 				"A place to hangout and watch TV.", 
 				"This room is has couches and lots of fun things to do.");
 		
@@ -84,7 +88,7 @@ public class RoomManager {
 				"This item is at the corner of the room and is blue.");
 		
 		Item[] livingRoomItems = {tv, couch};
-		livingRoom.roomItems = livingRoomItems;
+		livingRoom.setRoomItems(livingRoomItems);
 		
 		return livingRoom;
 	}
@@ -106,7 +110,7 @@ public class RoomManager {
 		
 		Item[] bathroomItems = {toothbrush, toothpaste, mirror};
 		
-		bathroom.roomItems = bathroomItems;
+		bathroom.setRoomItems(bathroomItems);
 		return bathroom;
 		
 	}
@@ -122,9 +126,28 @@ public class RoomManager {
 				"This car is a sedan.",
 				"This car needs to be cleaned.");
 		Item[] garageItems = {lawnmower, car};
-		garage.roomItems = garageItems;
+		garage.setRoomItems(garageItems);
 				
 		return garage;
+	}
+	
+	private Room createBedroom() {
+		Room bedroom = new Room("Bedroom", 
+				"A place to rest and sleep.",
+				"This is is located at the corner of the house.");
+		
+		Item bed = new Item("Bed", 
+				"Used to sleep on.", 
+				"This is the largest item in the room.");
+		
+		Item desk = new Item("Desk",
+				"Used to do some work.",
+				"The desk is brown with lots of paper on top.");
+		Item[] bedroomItems = {bed, desk};
+		
+		bedroom.setRoomItems(bedroomItems);
+		
+		return bedroom;
 	}
 	
 }

@@ -70,6 +70,19 @@ public class Room extends Fixture {
 		System.out.println("Item does not exist in room.");
 		return null;
 	}
+	
+	public void printItemInfo(String userInputItem) {
+		for (Item item : roomItems) {
+			if (userInputItem.equalsIgnoreCase(item.getName())) {
+				System.out.println(item.getName());
+				System.out.println(item.getShortDescription());
+				System.out.println(item.getLongDescription());
+				return;
+			}
+		}
+
+		System.out.println("Item does not exist in room.");
+	}
 
 	private static boolean contains(Item[] list, Item i) {
 		if (list != null) {
@@ -83,7 +96,6 @@ public class Room extends Fixture {
 	}
 
 	public void printRoomItems(Item[] seenItems) {
-
 		System.out.println(this.getName() + " items not yet interacted: ");
 		String output = "";
 		for (Item item : roomItems) {
@@ -91,7 +103,6 @@ public class Room extends Fixture {
 			if (!contains(seenItems, item)) {
 				output += item.getName() + " | ";
 			}
-
 		}
 		if (output == "") {
 			System.out.println("Empty");

@@ -6,7 +6,6 @@ public abstract class Fixture {
 	private String longDescription;
 	
 	public Fixture(String name, String shortDescription, String longDescription) {
-		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
